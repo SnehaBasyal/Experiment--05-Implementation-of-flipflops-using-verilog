@@ -102,39 +102,96 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
-
-
+1. Using nand gates and wires construct SR flipflop.
+2. Repeat same steps to construct JK,D,T flipflops.
+3. Find RTL diagram and timing diagram for all flipflops.
+4. End the program.
 
 ### PROGRAM 
-/*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+
+Developed by: SNEHA BASYAL M
+RegisterNumber: 22008869
+```
+PROGRAM FOR SR FLIPFLOP:
+
+module FlipFlopSR(S,R,clock,Q,Qbar);
+input S,R,clock;
+output Q,Qbar;
+wire X,Y;
+nand(X,S,clock);
+nand(Y,R,clock);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
+
+PROGRAM FOR JK FLIPFLOP:
+
+module FlipFlopJK(J,K,clock,Q,Qbar);
+input J,K,clock;
+output Q,Qbar;
+wire P,S;
+nand(P,J,clock,Qbar);
+nand(S,K,clock,Q);
+nand(Q,P,Qbar);
+nand(Qbar,S,Q);
+endmodule
+
+PROGRAM FOR T FLIPFLOP:
+
+module FlipFlopT(T,clock,Q,Qbar);
+input T,clock;
+output Q,Qbar;
+wire A,B;
+nand(A,T,clock,Qbar);
+nand(B,T,clock,Q);
+nand(Q,A,Qbar);
+nand(Qbar,B,Q);
+endmodule
+
+PROGRAM FOR D FLIPFLOP:
+
+module FlipFlopD(D,clock,Q,Qbar);
+input D,clock;
+output Q,Qbar;
+assign Dbar=~D;
+wire X,Y;
+nand(X,D,clock);
+nand(Y,Dbar,clock);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
+```
+### RTL LOGIC FOR FLIPFLOPS:
+
+SR FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](srflipflop.png)
+
+JK FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](jkflipflop.png)
+
+T FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](tflipflop.png)
+
+D FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](dflipflop.png)
 
 
 
 
+### TIMING DIGRAMS FOR FLIP FLOPS:
 
+SR FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](srtiming.png)
 
-### RTL LOGIC FOR FLIPFLOPS 
+JK FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](jktiming.png)
 
+T FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](tftiming.png)
 
+D FLIPFLOP
+![EXPERIMENT-05-IMPLEMENTATION-OF-FLIPFLOPS-USING-VERILOG](dtiming.png)
 
-
-
-
-
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
-
-
-
-
-
-
-
-### RESULTS 
+### RESULT:
+The implementation of flipflops is verified successfully.
